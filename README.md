@@ -254,8 +254,14 @@ The llama3.1 local model was used to solve this task since it provided sufficien
 ## Prompt Design
 The LLM was instructed to deliver a single JSON object with the specified variable fields. However, an additional function was needed to extract the exact Json object from the LLM response. 
 
+## Known Failure Cases
 
-## The Triage customer support results: 
+- Ambiguous or very short inputs may lead to lower confidence scores.
+- Inputs containing multiple unrelated issues may be summarized into a single category.
+- Local LLMs may  include extra text or formatting, requiring JSON parsing
+
+
+## The Fronend of Triage customer support results: 
 ![Triage CS](https://github.com/user-attachments/assets/2908ce2b-b2a8-4a29-ac6c-85bab107cb98)
 
 ![Triage Recents](https://github.com/user-attachments/assets/57c74ffa-4c71-4494-83d8-962e85913cf6)
