@@ -7,7 +7,20 @@ const API_BASE =
  * - Handle non-200 responses
  */
 export async function postTriage(text: string) {
-  throw new Error("Not implemented. Implement postTriage.");
+  const res = await fetch(`${API_BASE}/triage`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "applivation/json"
+    },
+    body: JSON.stringify({text})
+  });
+
+  if (!res.ok) {
+    const error = await res.json().catch(() => ({}));
+    throw new Error(error.error || "Faild to triage message")
+  }
+
+  return res.json();
 }
 
 /**
@@ -16,5 +29,10 @@ export async function postTriage(text: string) {
  * - Return parsed JSON
  */
 export async function getRecent(limit = 10) {
-  throw new Error("Not implemented. Implement getRecent.");
+  const res = await fetch(`${API_BASE}/triage?limit=${limit}`);
+
+  if (!res.ok){
+    throw new Error("Failed to fetch recent triages")
+  }
+  return res.json();
 }
